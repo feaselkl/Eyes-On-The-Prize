@@ -588,7 +588,7 @@ Great when there are few periods with many categories.  Also good when labels ar
 ### Bar Versus Column Chart
 
 Choose a bar chart if:
-* Category names are long-term
+* Category names are lengthy
 * You have a **lot** of categories
 * You have relatively few periods (ideally, 1)
 
