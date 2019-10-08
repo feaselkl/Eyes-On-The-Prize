@@ -717,6 +717,18 @@ Best use:  simple share of a static total.
 
 ---
 
+### In Fairness:  Pie Charts I Like
+
+![The other half of the battle](presentation/assets/image/Knowing.jpg)
+
+---
+
+### In Fairness:  Pie Charts I Like
+
+![Time to eat more pie](presentation/assets/image/PieChart.jpg)
+
+---
+
 ### Gauges
 
 Best use:  showing progress toward a target or as a percent full.
