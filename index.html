@@ -1,0 +1,946 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Catallaxy Services | Eyes on the Prize</title>
+
+		<link rel="stylesheet" href="../reveal.js/dist/reset.css">
+		<link rel="stylesheet" href="../reveal.js/dist/reveal.css">
+		<link rel="stylesheet" href="../reveal.js/dist/theme/black.css" id="theme">
+		<link rel="stylesheet" href="../WebsiteAssets/mods.css">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="../reveal.js/plugin/highlight/monokai.css" id="highlight-theme">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h2>Eyes on the Prize</h2>
+					<h3>Simple and Effective Dashboard Visualization Techniques</h3>
+					
+					<a href="https://www.catallaxyservices.com">Kevin Feasel</a> (<a href="https://twitter.com/feaselkl">@feaselkl</a>)<br />
+					<a href="http://CSmore.info/on/dashboards">http://CSmore.info/on/dashboards</a>
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>Who Am I?  What Am I Doing Here?</h3>
+					<div class="container">
+						<div class="col">
+							<table class="whoami">
+								<tr>
+									<td><a href="https://csmore.info"><img src="../WebsiteAssets/Logo.png" height="100" /></a></td>
+									<td nowrap><a href="https://csmore.info">Catallaxy Services</a></td>
+								</tr>
+								<tr>
+									<td><a href="https://curatedsql.com"><img src="../WebsiteAssets/CuratedSQLLogo.png" height="100" /></a></td>
+									<td nowrap><a href="https://curatedsql.com">Curated SQL</a></td>
+								</tr>
+								<tr>
+									<td><a href="https://www.apress.com/us/book/9781484254608"><img src="../WebsiteAssets/PolyBaseRevealed.png" height="120" /></a></td>
+									<td nowrap><a href="https://www.apress.com/us/book/9781484254608">PolyBase Revealed</a></td>
+								</tr>
+							</table>
+						</div>
+						<div class="col">
+							<a href="http://www.twitter.com/feaselkl"><img src="../WebsiteAssets/HeadShot.jpg" height="358" width="315" /></a>
+							<br />
+							<a href="http://www.twitter.com/feaselkl">@feaselkl</a>
+						</div>					
+					</div>
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>Agenda</h3>
+					
+					<ol>
+						<li class="active">Dashboard Basics</li>
+						<li>A "Normal" Dashboard</li>
+						<li>Knowledge</li>
+						<li>Visual Principles</li>
+						<li>Types of Visuals</li>
+						<li>That "Normal" Dashboard Redux</li>
+					</ol>
+				</section>
+				
+				<section data-background-image="presentation/assets/background/easel.jpg" data-background-opacity="0.2">
+					<h3>What are Dashboards?</h3>
+					
+					<p>Dashboards tell us about critical business or operational metrics. Key features include:</p>
+					
+					<ul>
+						<li>“Single pane of glass”</li>
+						<li>Key performance indicators (KPIs) apparent</li>
+						<li>Relevant KPIs are bunched together logically</li>
+						<li>Layouts are consistent between dashboard elements and between related dashboards</li>
+					</ul>
+					
+					<p>“Dashboards are not an appropriate venue for artistic impression.” -- Stephen Few</p>
+				</section>
+				
+				<section data-background-image="presentation/assets/background/dashboard.jpg" data-background-opacity="0.2">
+					<h3>Types of Dashboards</h3>
+					
+					<p>There are three major types of dashboards we will cover today:</p>
+					
+					<ul>
+						<li>Operational Dashboards</li>
+						<li>Strategic Dashboards</li>
+						<li>Tactical Dashboards</li>
+					</ul>
+
+					<p>These different dashboards fit the differing needs of an organization.</p>
+				</section>
+				
+				<section data-background-image="presentation/assets/background/lab.jpg" data-background-opacity="0.2">
+					<h3>Operational Dashboards</h3>
+					
+					<p>Operational dashboards provide “day-to-day” data that assist line employees in making decisions.  They tend to be specific to the nature of the user.</p>
+					
+					<img src="presentation/assets/image/1_OperationalDashboard.png" alt="Sample operational dashboard" />
+				</section>
+				
+				<section data-background-image="presentation/assets/background/rollercoaster.jpg" data-background-opacity="0.2">
+					<h3>Operational Dashboards</h3>
+					
+					<p>Operational dashboards <strong>drive action</strong> by informing that a process may be “out of control” and helping operators find the cause.</p>
+					
+					<img src="presentation/assets/image/2_ProcessOutOfControl.png" alt="Examining a process which has gone out of control" />
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>Strategic Dashboards</h3>
+					
+					<p>Strategic dashboards focus on KPIs tracked periodically and displayed at an aggregated level.</p>
+					
+					<img src="presentation/assets/image/3_StrategicDashboard.png" alt="Sample strategic dashboard" />
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>Tactical Dashboards</h3>
+					
+					<p>Tactical dashboards show strategic data at an almost-operational level.</p>
+					
+					<img src="presentation/assets/image/4_TacticalDashboard.png" alt="Sample tactical dashboard" />
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>Agenda</h3>
+					
+					<ol>
+						<li>Dashboard Basics</li>
+						<li class="active">A "Normal" Dashboard</li>
+						<li>Knowledge</li>
+						<li>Visual Principles</li>
+						<li>Types of Visuals</li>
+						<li>That "Normal" Dashboard Redux</li>
+					</ol>
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>A "Normal" Dashboard</h3>
+					
+					<img src="presentation/assets/image/5_BadDashboard.png" alt="An example of a bad dashboard" />
+				</section>
+				
+				<section data-background-image="presentation/assets/background/hardware.jpg" data-background-opacity="0.2">
+					<h3>A "Normal" Dashboard</h3>
+					
+					<p>We can intuitively see that this is not a good dashboard, but we might not be able to explain all the reasons why.  The rest of this session will give us the tools we need to understand why this is not a good dashboard.</p>
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>Agenda</h3>
+					
+					<div class="container">
+						<div class="col">
+							<ol>
+								<li>Dashboard Basics</li>
+								<li>A "Normal" Dashboard</li>
+								<li class="active">Knowledge</li>
+								<li>Visual Principles</li>
+								<li>Types of Visuals</li>
+								<li>That "Normal" Dashboard Redux</li>
+							</ol>
+						</div>
+						<div class="col">
+							<img src="presentation/assets/image/Knowing.jpg" alt="The other half of the battle" />
+						</div>					
+					</div>
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>The Key:  An Emotional Response</h3>
+					
+					<p>A great dashboard evokes one of two emotions from your intended audience:  happiness or anger.</p>
+					
+					<img src="presentation/assets/image/2_ProcessOutOfControl.png" alt="Examining a process which has gone out of control" height="320" />
+					
+					<p>If a dashboard evokes neither emotion in your intended audience, it isn't working.</p>
+				</section>
+				
+				<section data-background-image="presentation/assets/background/audience.jpg" data-background-opacity="0.2">
+					<h3>Know Your Audience</h3>
+					
+					<p>Key factors in knowing your audience:</p>
+					
+					<ul>
+						<li>Who is your intended audience?</li>
+						<li>How will they use your dashboard?</li>
+						<li>What actions do you want them to take as a result?</li>
+						<li>Are you showing the right measures in the right way?</li>
+						<li>What cultural differences might matter?</li>
+					</ul>
+				</section>
+				
+				<section data-background-image="presentation/assets/background/employees.jpg" data-background-opacity="0.2">
+					<h3>Who Is Your Intended Audience?</h3>
+					
+					<ul>
+						<li>Technical specialists or line operators?</li>
+						<li>Lower or mid-level management</li>
+						<li>Upper-level management?</li>
+						<li>C-levels?</li>
+						<li>The board?</li>
+						<li>External regulators or auditors?</li>
+						<li>The general public?</li>
+					</ul>
+					
+					<p>For each of these, we display different measures in different ways.</p>
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>Intended Audience</h3>
+					
+					<p>This dashboard is great for a line worker, but a board member likely won't care about operational metrics.</p>
+					
+					<img src="presentation/assets/image/1_OperationalDashboard.png" alt="Sample operational dashboard" />
+				</section>
+				
+				<section data-background-image="presentation/assets/background/businessdecision.jpg" data-background-opacity="0.2">
+					<h3>Intended Use</h3>
+					
+					<p>How will users make use of your dashboard?  What actions do you want them to take as a result?</p>
+
+					<p>Your job as a dashboard creator is to provide relevant metrics in an easy-to-understand way, requiring the user to get relevant information as easily as possible in order to make good business decisions.</p>
+				</section>
+				
+				<section data-background-image="presentation/assets/background/devices.jpg" data-background-opacity="0.2">
+					<h3>Intended Use</h3>
+					
+					<p>Critical considerations:</p>
+					
+					<ul>
+						<li>Do users need to see historical data or just the present value?</li>
+						<li>Is there a baseline or known good value?</li>
+						<li>Under what circumstances should a user act?  Can you display those rules?</li>
+						<li>What media will your audience use to view the data?  Examples:  phone, tablet, desktop, TV.</li>
+					</ul>
+				</section>
+				
+				<section data-background-image="presentation/assets/background/sales.jpg" data-background-opacity="0.2">
+					<h3>Right Measures, Right Way</h3>
+					
+					<p>Are you showing the right measures in the right way? For a sales team dashboard, you want to include sales-centric measures like leads in different steps of the pipeline, likelihood of a contact making a purchase, and number of sales by person against a quota.  You don't want to include measures like server uptime, net margin, or number of high-severity issues.</p>
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>Right Measures, Right Way</h3>
+					
+					<img src="presentation/assets/image/SalesMockup.png" alt="A sample mockup of a sales pipeline dashboard" />
+				</section>
+				
+				<section data-background-image="presentation/assets/background/chinese-temple.jpg" data-background-opacity="0.2">
+					<h3>Cultural Differences</h3>
+					
+					<p>What cultural differences might matter?</p>
+
+					<p>The meanings of colors can differ between cultures.  For example, in European and American culture, red typically has one of two major meanings:  love and danger.  In finance, we use red to indicate negative values (going back to danger).</p>
+
+					<p>By contrast, in China, red has historically indicated prosperity--people give gifts of money at weddings and during major holidays in small red envelopes.</p>
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>Agenda</h3>
+					
+					<ol>
+						<li>Dashboard Basics</li>
+						<li>A "Normal" Dashboard</li>
+						<li>Knowledge</li>
+						<li class="active">Visual Principles</li>
+						<li>Types of Visuals</li>
+						<li>That "Normal" Dashboard Redux</li>
+					</ol>
+				</section>
+				
+				<section data-background-image="presentation/assets/background/eye.jpg" data-background-opacity="0.2">
+					<h3>Visual Principles</h3>
+					
+					<p>In this section, we will look at six important visual principles:</p>
+
+					<ul>
+						<li>Cognitive Load</li>
+						<li>Less Is More</li>
+						<li>Where The Eye Looks</li>
+						<li>The Rule Of Thirds</li>
+						<li>Glanceability</li>
+						<li>Color Vision Deficiency</li>
+					</ul>
+				</section>
+				
+				<section data-background-image="presentation/assets/background/graywall.jpg" data-background-opacity="0.6">
+					<h3>Cognitive Load</h3>
+					
+					<p>Our working memory can hold approximately 3-7 items at one time.  Think of this working memory like registers and our long-term memory like RAM:  we move information out of long-term memory into working memory and (sometimes) vice versa.</p>
+					
+					<img src="presentation/assets/image/7_Memory_consolidation.svg" alt="A representation of how human memory works" />
+				</section>
+				
+				<section data-background-image="presentation/assets/background/ram.jpg" data-background-opacity="0.2">
+					<h3>Cognitive Load</h3>
+					
+					<p>Because of this, we want to look for ways to reduce mental load.  Techniques include:</p>
+					
+					<ul>
+						<li>Allow people to group things together using attributes like size, shape, orientation, thickness, and color.</li>
+						<li>Remove "noise" from the reader--get rid of things that distract or cause unnecessary load.</li>
+						<li>Have your visuals tell a coherent story.</li>
+					</ul>
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>Less is More</h3>
+					
+					<p>Remove unnecessary clutter.</p>
+					
+					<img src="presentation/assets/image/8a_ClutteredDashboard.png" alt="A cluttered dashboard" height="450" />
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>Less is More</h3>
+					
+					<p>After removing the clutter, notice how much easier this is to read.</p>
+					
+					<img src="presentation/assets/image/8b_UnclutteredDashboard.png" alt="A less-cluttered dashboard" height="450" />
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>Less is More</h3>
+					
+					<p>Reduce your color usage.  Keep color usage limited and consistent and ensure colors add value.</p>
+					
+					<img src="presentation/assets/image/8d_TooManyColors.png" height="487" width="454" />
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>Less is More</h3>
+					
+					<p>In this case, it's clear that the colors were not in fact helping anything.</p>
+					
+					<img src="presentation/assets/image/8e_FewerColors.png" height="487" width="454" />
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>Less is More</h3>
+					
+					<p>I can now highlight a particular value with color, a <strong>pre-attentive attribute</strong>.</p>
+					
+					<img src="presentation/assets/image/8f_FocusColor.png" height="487" width="454" />
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>Less is More</h3>
+					
+					<p>Color is also an associative property, meaning people tend to link similar things with the same color together.  If you break that pattern, you can confuse people.</p>
+					
+					<div class="container">
+						<div class="col">
+							<img src="presentation/assets/image/8g_ColorReuse1.png" alt="A two-color pie chart" />
+						</div>
+						<div class="col">
+							<img src="presentation/assets/image/8g_ColorReuse2.png" alt="A two-color pie chart with colors swapped" />
+						</div>					
+					</div>
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>3D Pains</h3>
+					
+					<p>Humans have trouble with precise 3D measurements.  In rare cases, a 3D image is better than a 2D equivalent, but that is never the case for bar or column charts.  3D "gloss" is also not helpful for getting your point across.</p>
+					
+					<img src="presentation/assets/image/8h_3D.png" alt="Use of 3D on charts tends to obscure their results" />
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>Where We Look</h3>
+					
+					<p>In European languages, we read left-to-right, top-to-bottom.</p>
+					
+					<img src="presentation/assets/image/United_States_Declaration_of_Independence.jpg" alt="The Declaration of Independence is an example of left-to-right text" />
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>Where We Look</h3>
+					
+					<p>In European languages, we read left-to-right, top-to-bottom.</p>
+					
+					<img src="presentation/assets/image/Jerusalem_King_David_Street_graffiti_closeup.jpg" alt="Hebrew is an example of a right-to-left language." />
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>Where We Look</h3>
+					
+					<p>In ancient Asian languages (especially Chinese), we read top-to-bottom, right-to-left.</p>
+					
+					<img src="presentation/assets/image/AncientChineseScript.jpg" alt="An example of ancient Chinese writing." />
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>Less is More</h3>
+					
+					<p>Color is also an associative property, meaning people tend to link similar things with the same color together.  If you break that pattern, you can confuse people.</p>
+					
+					<div class="container">
+						<div class="col">
+							<p>In modern Chinese, we read left-to-right, top-to-bottom.</p>
+
+							<p>In modern Japanese, we read left-to-right, top-to-bottom (except when we don't).</p>
+						</div>
+						<div class="col">
+							<img src="presentation/assets/image/JapaneseAllDirections.png" alt="A Japanese advertisement with left-to-right, right-to-left, and top-to-bottom text." />
+						</div>					
+					</div>
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>The Gutenberg layout:</h3>
+					
+					<img src="presentation/assets/image/9_GutenbergLayout.jpg" alt="The Gutenberg layout" />
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>The Z layout:</h3>
+					
+					<img src="presentation/assets/image/9_ZLayout.png" alt="The Z layout" />
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>The F layout:</h3>
+					
+					<img src="presentation/assets/image/9_FLayout.jpg" alt="The F layout" />
+				</section>
+				
+				<section data-background-image="presentation/assets/background/focalpoints.jpg" data-background-opacity="0.2">
+					<h3>Where We Look</h3>
+					
+					<p>These layouts tend to work for evenly distributed, homogeneous data, things like newspaper articles which are text-heavy in content. For image-heavy dashboards, people follow a different principle:  <strong>focal points</strong>.</p>
+				</section>
+				
+				<section data-background-image="presentation/assets/background/focalpoints.jpg" data-background-opacity="1.0">
+					
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>Focal Points</h3>
+					
+					<img src="presentation/assets/image/4_TacticalDashboard.png" alt="The tactical dashboard and focal points" />
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>The Rule of Thirds</h3>
+					
+					<p>The Rule of Thirds applies to images, but also to dashboards.</p>
+					
+					<img src="presentation/assets/image/9_RuleOfThirds.jpg" alt="The Rule of Thirds in action" />
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>The Rule of Thirds</h3>
+					
+					<p>The strategic dashboard (sort of) follows the Rule of Thirds.</p>
+					
+					<img src="presentation/assets/image/3_strategicdashboard_gridlines.png" alt="The Rule of Thirds with the strategic dashboard" />
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>Glanceability</h3>
+					
+					<p>Glanceability is the idea that a human can, at a glance, gain important information from your dashboard.  Things which help glanceability include:</p>
+					
+					<ul>
+						<li>Clear purpose in metric design and display</li>
+						<li>No scrolling</li>
+						<li>Group metrics by function into sections:  don't make users search around for related data</li>
+						<li>Easy to see (and differentiate) sections</li>
+						<li>Consistent layouts and decisions</li>
+						<li>Easy to read:  large font, rounded numbers</li>
+					</ul>
+				</section>
+				
+				<section data-background-image="presentation/assets/background/grayscale-lighthouse.jpg" data-background-opacity="0.2" data-markdown>
+					<textarea data-template>
+					### Color Vision Deficiency
+
+					CVD affects 8% of men and 0.5% of women.
+
+					|Name|Cones|Likelihood|
+					|----|-----|----------|
+					|Protanomaly|Red|1% M|
+					|Protanopia|Red|1% M|
+					|Deuteranomaly|Green|5% M|
+					|Deuteranopia|Green|1% M|
+					|Tritanomaly|Blue|Rare M/F|
+					|Tritanopia|Blue|Rare M/F|
+					</textarea>
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>Color Vision Deficiency</h3>
+					
+					<p>The Badlands, as seen by drone:</p>
+					
+					<img src="presentation/assets/image/10_Badlands_Drone.jpg" alt="A full-color shot of the Badlands in South Dakota" />
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>Color Vision Deficiency</h3>
+					
+					<p>The Badlands, with protanopia:</p>
+					
+					<img src="presentation/assets/image/10_BadlandsDrone_Protanopia.png" alt="A shot of the Badlands in South Dakota as seen by someone with protanopia" />
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>Color Vision Deficiency</h3>
+					
+					<p>The Badlands, with deuteranopia:</p>
+					
+					<img src="presentation/assets/image/10_BadlandsDrone_Deuteranopia.png" alt="A shot of the Badlands in South Dakota as seen by someone with deuteranopia" />
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>Color Vision Deficiency</h3>
+					
+					<p>The Badlands, with tritanopia:</p>
+					
+					<img src="presentation/assets/image/10_BadlandsDrone_Tritanopia.png" alt="A shot of the Badlands in South Dakota as seen by someone with tritanopia" />
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>Color Vision Deficiency</h3>
+					
+					<p>Remember the old SSIS?</p>
+					
+					<img src="presentation/assets/image/10a_SSIS.jpg" height="470" />
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>Color Vision Deficiency</h3>
+					
+					<p>SSIS 2008 with tritanopia:</p>
+					
+					<img src="presentation/assets/image/10a_SSISTritanopia.png" height="470" />
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>Color Vision Deficiency</h3>
+					
+					<p>SSIS 2008 with protanopia:</p>
+					
+					<img src="presentation/assets/image/10a_SSISProtanopia.png" height="470" />
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>Color Vision Deficiency</h3>
+					
+					<p>SSIS 2008 with deuteranopia:</p>
+					
+					<img src="presentation/assets/image/10a_SSISDeuteranopia.png" height="470" />
+				</section>
+				
+				<section data-background-image="presentation/assets/background/sepia-city.jpg" data-background-opacity="0.2">
+					<h3>Color Vision Deficiency</h3>
+					
+					<p>Possible solutions:</p>
+					
+					<ul>
+						<li>Use color-safe palettes</li>
+						<li>Use grayscale for images (also helps if they're going to be printed out)</li>
+						<li>Use colors sparingly and consistently</li>
+						<li>Use patterns instead of (or in addition to) colors to highlight a particular element</li>
+						<li>Use a website like <a href="http://www.color-blindness.com/coblis-color-blindness-simulator/">Coblis</a> to simulate various forms of CVD</li>
+					</ul>
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>Agenda</h3>
+					
+					<ol>
+						<li>Dashboard Basics</li>
+						<li>A "Normal" Dashboard</li>
+						<li>Knowledge</li>
+						<li>Visual Principles</li>
+						<li class="active">Types of Visuals</li>
+						<li>That "Normal" Dashboard Redux</li>
+					</ol>
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>Types of Visuals</h3>
+					
+					<p>SSIS 2008 with deuteranopia:</p>
+					
+					<img src="presentation/assets/image/11_ChoosingTheRightChart.png" height="519" width="740" />
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>Table / Matrix</h3>
+					
+					<p>Great when users need to compare data directly.  Tables and matrices generally don't belong on strategic dashboards, but do belong in tactical dashboards and sometimes operational dashboards.</p>
+					
+					<img src="presentation/assets/image/11_Matrix.png" alt="An example of a matrix" />
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>Column Chart</h3>
+					
+					<p>Great when there are few categories but potentially many periods.</p>
+					
+					<img src="presentation/assets/image/11_ColumnChart.png" alt="An example of a column chart" />
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>Bar Chart</h3>
+					
+					<p>Great when there are few periods with many categories.  Also good when labels are lengthy.</p>
+					
+					<img src="presentation/assets/image/11_BarChart.png" alt="An example of a bar chart" />
+				</section>
+				
+				<section data-background-image="presentation/assets/background/bison-fighting.jpg" data-background-opacity="0.2">
+					<h3>Bar Versus Column Chart</h3>
+					
+					<p>Choose a bar chart if:</p>
+					
+					<ul>
+						<li>Category names are lengthy</li>
+						<li>You have a <strong>lot</strong> of categories</li>
+						<li>You have relatively few periods (ideally, 1)</li>
+					</ul>
+					
+					<p>Choose a column chart if:</p>
+					
+					<ul>
+						<li>Viewing across periods is important</li>
+						<li>You have many periods with relatively few categories</li>
+						<li>Category names are short</li>
+					</ul>
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>Bar and Column Charts</h3>
+					
+					<p>Bar and column charts should start at the origin (0).</p>
+					
+					<img src="presentation/assets/image/11_MisleadingBarChart.png" alt="An example of a misleading bar chart which does not start from the origin" />
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>Cleveland Dot Plots</h3>
+					
+					<p>Named after Bill Cleveland, this is a minimalistic visual for comparing categories.</p>
+					
+					<img src="presentation/assets/image/11_DotPlot.png" alt="An example of a Cleveland dot plot" />
+					
+					<p>Dot plots are not native to Power BI, but there are a couple of custom visuals which give you dot plots.  They can provide a lot of information in a very small amount of space, making them great accompaniments for tables or larger visuals.</p>
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>Radar Charts</h3>
+					
+					<p>My fondness of radar charts comes from playing Madden NFL in franchise mode.</p>
+					
+					<img src="presentation/assets/image/Madden.jpg" alt="An example of a radar chart from Madden 09" />
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>Line Charts</h3>
+					
+					<p>Great for time series data stretching over many periods with non-cyclical data, but showing few categories.  You can also use a column chart here, especially with only 2-3 categories</p>
+					
+					<img src="presentation/assets/image/11_LineChart.png" alt="An example of a line chart" />
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>Line and Column Charts</h3>
+					
+					<p>Risky chart, but works well with two inter-related but distinct variables. Often used with stock market levels and volumes.</p>
+					
+					<img src="presentation/assets/image/11_LineAndColumn.png" alt="An example of a line and column chart" />
+				</section>
+				
+				<section data-background-image="presentation/assets/background/books-45degree.jpg" data-background-opacity="0.2">
+					<h3>Line Charts:  From The Origin?</h3>
+					
+					<p>For bar charts, we want to start at the origin.  For line charts (and dot plots), we don't need to.  Instead, Cleveland, McGill, &amp; McGill proposed making the average line slope 45 degrees.  This principle reduces the potential for confusion when viewing a line chart and is why it's fine to have the bottom of a line chart start above 0.</p>
+
+					<p>Power BI and Excel (as well as many data visualization tools) automatically do this for you.</p>
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>Scatterplots</h3>
+					
+					<p>Great for showing relationships between two variables over a relatively small number of categories.</p>
+					
+					<img src="presentation/assets/image/11_Scatterplot.png" alt="An example of a scatterplot" />
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>Bubble Charts</h3>
+					
+					<p>Great for showing relationships between three variables, but as bubbles get larger, the image becomes harder to follow.</p>
+					
+					<img src="presentation/assets/image/11_BubbleChart.png" alt="An example of a bubble chart" />
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>Treemaps</h3>
+					
+					<p>Risky chart, but great for showing the relative share of value for a medium to large number of hierarchical, categorical values.</p>
+					
+					<img src="presentation/assets/image/11_Treemap.png" alt="An example of a treemap" />
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>Charts I Don't Like</h3>
+					
+					<p>The following charts are ones which have their uses, but I'm not particularly fond of them.</p>
+
+					<p>We will look at potentially good use cases, but also look at why I don't much like these charts.</p>
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>Pie Charts</h3>
+					
+					<p>Best use:  simple share of a static total.</p>
+					
+					<img src="presentation/assets/image/11_PieChart.png" alt="An example of a pie chart" />
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>Why We Hate Pie Charts</h3>
+					
+					<ul>
+						<li>Angle differences are hard to discern.</li>
+						<li>Small percentages are hard to differentiate.</li>
+						<li>Pie charts usually require legends.</li>
+					</ul>
+					
+					<img src="presentation/assets/image/11_PieChartSizes.png" alt="An example of an issue with sizing in pie charts" />
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>Pie Chart Alternatives</h3>
+					
+					<ul>
+						<li>Treemaps for comparing many categories.</li>
+						<li>Column charts for comparing few categories.</li>
+						<li>Simple numbers (e.g., 58% - 42%)</li>
+					</ul>
+					
+					<img src="presentation/assets/image/11_BarChartSizes.png" alt="The same relative sizes as a pie chart in column chart form" />
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>In Fairness:  Pie Charts I Like</h3>
+					
+					<img src="presentation/assets/image/Knowing.jpg" alt="The other half of the battle" />
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>In Fairness:  Pie Charts I Like</h3>
+					
+					<img src="presentation/assets/image/PieChart.jpg" alt="Time to eat more pie" />
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>Gauges</h3>
+					
+					<p>Best use:  showing progress toward a target or as a percent full.</p>
+					
+					<img src="presentation/assets/image/11_Gauge.png" alt="An example of a gauge" />
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>The Problem with Gauges</h3>
+					
+					<p>Gauges are okay, but they need to show progress toward a goal or provide an intuitive status.</p>
+					
+					<img src="presentation/assets/image/11_GaugeWithoutGoal.png" alt="An example of a gauge without a goal" />
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>Stacked Area Charts</h3>
+					
+					<p>Best use:  showing relative and absolute differences of data which changes over time but has relatively few periods.</p>
+					
+					<img src="presentation/assets/image/11_StackedAreaChart.png" alt="An example of a stacked area chart" />
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>The Problem With SACs</h3>
+					
+					<p>Looking at this again, what information can we know for sure?  Just the top line and the bottom category.</p>
+					
+					<img src="presentation/assets/image/11_StackedAreaChart.png" alt="An example of a stacked area chart" />
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>SAC Alternatives</h3>
+					
+					<p>Instead, you can show information more clearly with a line chart.  The downside is that you'll have to calculate the total yourself if you want it to show.</p>
+					
+					<img src="presentation/assets/image/11_StackedAreaAlternative.png" alt="Using a line chart instead of a stacked area chart" />
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>SAC Alternatives</h3>
+					
+					<p>Ribbon charts show rank changes but tend to be noisy and only useful when users can mouse over the data points.</p>
+					
+					<img src="presentation/assets/image/11_StackedAreaAlternativeRibbon.png" alt="An example of a ribbon chart" />
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>Agenda</h3>
+					
+					<ol>
+						<li>Dashboard Basics</li>
+						<li>A "Normal" Dashboard</li>
+						<li>Knowledge</li>
+						<li>Visual Principles</li>
+						<li>Types of Visuals</li>
+						<li class="active">That "Normal" Dashboard Redux</li>
+					</ol>
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>"Normal" Redux</h3>
+										
+					<img src="presentation/assets/image/5_BadDashboard.png" alt="An ugly dashboard" />
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>Pie Charts</h3>
+										
+					<img src="presentation/assets/image/5a_PieCharts.png" alt="An ugly dashboard with pie charts" />
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>Too Many Colors</h3>
+										
+					<img src="presentation/assets/image/5b_TooManyColors.png" alt="An ugly dashboard with too many colors" />
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>Unnecessary 3D</h3>
+										
+					<img src="presentation/assets/image/5c_Unnecessary3D.png" alt="An ugly dashboard with unnecessary 3D elements" />
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>Category Overload</h3>
+										
+					<img src="presentation/assets/image/5d_CategoryOverload.png" alt="An ugly dashboard with category overload" />
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>Scroll Bars</h3>
+										
+					<img src="presentation/assets/image/5e_ScrollBars.png" alt="An ugly dashboard with scroll bars" />
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>Improper Color Reuse</h3>
+										
+					<img src="presentation/assets/image/5f_ColorReuse.png" alt="An ugly dashboard with improper color reuse" />
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>Unnecessary Chrome</h3>
+										
+					<img src="presentation/assets/image/5g_UnnecessaryChrome.png" alt="An ugly dashboard with unnecessary chrome" />
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>Wrapping Up</h3>
+					
+					<p>Keep these tips in mind when creating a dashboard:</p>
+
+					<ul>
+						<li>Use appropriate visuals</li>
+						<li>Use color consistently and as a signal</li>
+						<li>Avoid chartjunk and unnecessary chrome</li>
+						<li>Avoid legends when possible</li>
+						<li>Avoid scroll bars</li>
+						<li>Make your dashboard glanceable</li>
+						<li>Make appropriate use of whitespace</li>
+						<li>Ensure your dashboard is CVD-friendly</li>
+					</ul>
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>Wrapping Up</h3>
+					
+					<p>
+						To learn more, go here:
+						<br />
+						<a href="https://csmore.info/on/dashboards">https://CSmore.info/on/dashboards</a>
+					</p>
+					<br />
+					<p>
+						And for help, contact me:
+						<br />
+						<a href="mailto:feasel@catallaxyservices.com">feasel@catallaxyservices.com</a> | <a href="https://www.twitter.com/feaselkl">@feaselkl</a>
+					</p>
+					<br />
+					<p>
+						Catallaxy Services consulting:
+						<br />
+						<a href="https://csmore.info/contact">https://CSmore.info/on/contact</a>
+					</p>
+				</section>
+			</div>
+		</div>
+
+		<script src="../reveal.js/dist/reveal.js"></script>
+		<script src="../reveal.js/plugin/zoom/zoom.js"></script>
+		<script src="../reveal.js/plugin/notes/notes.js"></script>
+		<script src="../reveal.js/plugin/search/search.js"></script>
+		<script src="../reveal.js/plugin/markdown/markdown.js"></script>
+		<script src="../reveal.js/plugin/math/math.js"></script>
+		<script src="../reveal.js/plugin/menu/menu.js"></script>
+		<script src="../reveal.js/plugin/highlight/highlight.js"></script>
+		<script src="../reveal.js/plugin/chart/Chart.min.js"></script>
+		<script src="../reveal.js/plugin/chart/plugin.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				width: '70%',
+				controls: true,
+				progress: true,
+				center: true,
+				hash: true,
+				transition: 'fade',
+				
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealZoom, RevealNotes, RevealSearch, RevealMarkdown, RevealHighlight, RevealMath, RevealMenu, RevealChart ]
+			});
+		</script>
+	</body>
+</html>
