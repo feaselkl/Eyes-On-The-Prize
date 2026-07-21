@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Sales pipeline dashboard</title>
+<style>
+  :root {
+    --surface-1:#fcfcfb; --page:#f4f4f1;
+    --text-primary:#0b0b0b; --text-secondary:#52514e; --muted:#898781;
+    --gridline:#e1e0d9; --baseline:#c3c2b7;
+    --blue:#2a78d6; --orange:#eb6834; --track:#e7e6e0;
+    --border:rgba(11,11,11,0.10);
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  html, body { background:var(--page); }
+  body {
+    width:1600px; height:1000px;
+    font-family:system-ui,-apple-system,"Segoe UI",sans-serif;
+    color:var(--text-primary); padding:40px 48px;
+    display:flex; flex-direction:column; gap:22px;
+  }
+  .head { display:flex; justify-content:space-between; align-items:flex-end; }
+  .head h1 { font-size:30px; font-weight:650; letter-spacing:-0.01em; }
+  .head .sub { font-size:17px; color:var(--text-secondary); margin-top:4px; }
+  .head .aud { font-size:15px; color:var(--blue); font-weight:600; text-align:right; }
+  .head .asof { font-size:15px; color:var(--muted); text-align:right; }
+
+  .kpis { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+  .kpi { background:var(--surface-1); border:1px solid var(--border); border-radius:10px;
+    padding:18px 22px; display:flex; flex-direction:column; gap:6px; }
+  .kpi .label { font-size:15px; color:var(--text-secondary); }
+  .kpi .value { font-size:44px; font-weight:660; line-height:1; letter-spacing:-0.02em; }
+  .kpi .foot { font-size:14px; color:var(--muted); }
+
+  .body { flex:1; display:grid; grid-template-columns:1fr 1fr; gap:22px; min-height:0; }
+  .panel { background:var(--surface-1); border:1px solid var(--border); border-radius:10px;
+    padding:20px 24px; display:flex; flex-direction:column; min-height:0; }
+  .panel h2 { font-size:18px; font-weight:620; }
+  .panel .psub { font-size:14px; color:var(--muted); margin-top:2px; margin-bottom:10px; }
+  .panel .chart { flex:1; min-height:0; }
+  .callout { font-size:14px; color:var(--text-secondary); margin-top:10px; }
+  .callout b { color:var(--orange); }
+  svg text { font-family:inherit; }
+</style>
+</head>
+<body>
+  <div class="head">
+    <div>
+      <h1>Sales pipeline &mdash; current snapshot</h1>
+      <div class="sub">Where the deals <em>and the dollars</em> are, right now</div>
+    </div>
+    <div>
+      <div class="aud">For: VP of Sales</div>
+      <div class="asof">As of today &middot; open opportunities</div>
+    </div>
+  </div>
+
+  <div class="kpis">
+    <div class="kpi">
+      <div class="label">Weighted pipeline value</div>
+      <div class="value" id="k-weighted"></div>
+      <div class="foot">Risk-adjusted across all open stages</div>
+    </div>
+    <div class="kpi">
+      <div class="label">Total potential</div>
+      <div class="value" id="k-potential"></div>
+      <div class="foot">If every open deal closed</div>
+    </div>
+    <div class="kpi">
+      <div class="label">Expected to close this quarter</div>
+      <div class="value" id="k-q3"></div>
+      <div class="foot">Q3 forecast</div>
+    </div>
+  </div>
+
+  <div class="body">
+    <div class="panel">
+      <h2>Customers at each stage</h2>
+      <div class="psub">A current count per stage &mdash; each stage is a different set of customers, with its own likelihood to close.</div>
+      <div class="chart"><svg id="funnel" width="100%" height="100%" preserveAspectRatio="xMidYMid meet"></svg></div>
+    </div>
+    <div class="panel">
+      <h2>Expected revenue by stage</h2>
+      <div class="psub">Potential revenue &times; likelihood to close. This is where the weighted value actually sits.</div>
+      <div class="chart"><svg id="money" width="100%" height="100%" preserveAspectRatio="xMidYMid meet"></svg></div>
+      <div class="callout">Most expected value&mdash;<b>$570K</b>&mdash;is still in <b>Leads Contacted</b>, the <em>least</em> certain stage. Big potential, low probability: the pipeline is real but fragile.</div>
+    </div>
+  </div>
+
+<script>
+const STAGES = [
+  { name:"Leads Contacted", count:806, potential:11398449, p:0.05, expected:569922.45 },
+  { name:"Leads Engaged",   count:47,  potential:705376,   p:0.40, expected:282150.40 },
+  { name:"Offers Made",     count:16,  potential:231824,   p:0.80, expected:185459.20 },
+  { name:"Contracts Out",   count:8,   potential:119368,   p:0.95, expected:113399.60 },
+];
+const TOTAL_WEIGHTED = 1150931.65, TOTAL_POTENTIAL = 12455017, EXPECTED_Q3 = 383503.92;
+
+const SVGNS="http://www.w3.org/2000/svg";
+function el(n,a,t){const e=document.createElementNS(SVGNS,n);for(const k in a)e.setAttribute(k,a[k]);if(t!=null)e.textContent=t;return e;}
+const C={ ink:"#0b0b0b", sec:"#52514e", muted:"#898781", grid:"#e1e0d9", blue:"#2a78d6", orange:"#eb6834", surface:"#fcfcfb", track:"#e7e6e0" };
+const money = v => v>=1e6 ? "$"+(v/1e6).toFixed(2)+"M" : v>=1e3 ? "$"+Math.round(v/1e3)+"K" : "$"+Math.round(v);
+
+function render(){
+  document.getElementById("k-weighted").textContent = money(TOTAL_WEIGHTED);
+  document.getElementById("k-potential").textContent = money(TOTAL_POTENTIAL);
+  document.getElementById("k-q3").textContent = money(EXPECTED_Q3);
+
+  // --- Customers per stage: horizontal bar chart (counts, snapshot) ---
+  (function(){
+    const svg=document.getElementById("funnel");
+    const W=svg.clientWidth||620, H=svg.clientHeight||420;
+    const mL=182, mR=66, mT=8, mB=8;
+    const rows=STAGES, max=rows[0].count;
+    const plotW=W-mL-mR, plotH=H-mT-mB;
+    const band=plotH/rows.length, bh=Math.min(34, band*0.4);
+    rows.forEach((s,i)=>{
+      const y=mT+band*i+(band-bh)/2, w=Math.max(2, s.count/max*plotW), rr=Math.min(4,bh/2);
+      // two-line right-aligned label: stage name + its likelihood to close
+      svg.appendChild(el("text",{x:mL-14,y:y+bh/2-3,"text-anchor":"end","font-size":15,"font-weight":600,fill:C.ink},s.name));
+      svg.appendChild(el("text",{x:mL-14,y:y+bh/2+15,"text-anchor":"end","font-size":13,fill:C.sec},Math.round(s.p*100)+"% likely to close"));
+      const p=`M${mL} ${y} L${mL+w-rr} ${y} Q${mL+w} ${y} ${mL+w} ${y+rr} L${mL+w} ${y+bh-rr} Q${mL+w} ${y+bh} ${mL+w-rr} ${y+bh} L${mL} ${y+bh} Z`;
+      svg.appendChild(el("path",{d:p,fill:C.blue}));
+      svg.appendChild(el("text",{x:mL+w+8,y:y+bh/2+5,"font-size":15,"font-weight":700,fill:C.ink,"font-variant-numeric":"tabular-nums"},s.count.toLocaleString()));
+    });
+  })();
+
+  // --- Expected revenue by stage: horizontal bars, Leads Contacted accented ---
+  (function(){
+    const svg=document.getElementById("money");
+    const W=svg.clientWidth||620, H=svg.clientHeight||360;
+    const mL=132, mR=78, mT=8, mB=8;
+    const rows=STAGES, max=Math.max(...rows.map(r=>r.expected));
+    const plotW=W-mL-mR, plotH=H-mT-mB;
+    const band=plotH/rows.length, bh=Math.min(30,band*0.5);
+    rows.forEach((r,i)=>{
+      const y=mT+band*i+(band-bh)/2, w=r.expected/max*plotW, rr=Math.min(4,bh/2);
+      const color = i===0 ? C.orange : C.blue;
+      svg.appendChild(el("text",{x:mL-12,y:y+bh/2+4,"text-anchor":"end","font-size":14,fill:C.sec},r.name));
+      const p=`M${mL} ${y} L${mL+w-rr} ${y} Q${mL+w} ${y} ${mL+w} ${y+rr} L${mL+w} ${y+bh-rr} Q${mL+w} ${y+bh} ${mL+w-rr} ${y+bh} L${mL} ${y+bh} Z`;
+      svg.appendChild(el("path",{d:p,fill:color}));
+      svg.appendChild(el("text",{x:mL+w+8,y:y+bh/2+5,"font-size":14,"font-weight":600,fill:C.ink,"font-variant-numeric":"tabular-nums"},money(r.expected)));
+    });
+  })();
+}
+window.addEventListener("load", () => requestAnimationFrame(render));
+</script>
+</body>
+</html>
