@@ -46,12 +46,11 @@ jobs:
         env:
           DEST: ${{ github.event.repository.name }}
         run: |
-          rsync -rlvz --delete \'
+          rsync -rlvz --delete \
             --exclude '.git/' \
             --exclude '.github/' \
             --exclude '.gitattributes' \
             --exclude '.gitignore' \
-            --exclude '*.pptx' \
             -e "ssh -i ~/.ssh/deploy_key -o IdentitiesOnly=yes" \
             ./ "feaselkl@opal4.opalstack.com:${DEST}/"
 
